@@ -14,9 +14,9 @@ function getNLUInstance() {
     const naturalLanguageUnderstanding = new NaturalLanguageUnderstandingV1({
     version: '2020-08-01',
     authenticator: new IamAuthenticator({
-        apikey: '{apikey}',
+        apikey: api_key,
     }),
-    serviceUrl: '{url}',
+    serviceUrl: api_url,
     });
 
     return naturalLanguageUnderstanding;
@@ -38,10 +38,11 @@ app.get("/url/emotion", (req,res) => {
     let url = req.query.url;
     const analyzeParams = {
     'url': url,
-    'entities': {
-        'emotion': true,
-        'limit': 1
-     }
+     'features':{
+        'entities': {
+            'emotion': true,
+            'limit': 1
+        }}
     };
 
     let naturalLanguageUnderstanding=getNLUInstance();
@@ -53,7 +54,8 @@ app.get("/url/emotion", (req,res) => {
     })
     .catch(err => {
         console.log('error:', err);
-         res.send({'error:': err});
+         //res.send({'error:': err});
+         res.send('error:'+ err);
     });
 });
 
@@ -63,10 +65,11 @@ app.get("/url/sentiment", (req,res) => {
     
     const analyzeParams = {
     'url': url,
-    'entities': {
-        'sentiment': true,
-        'limit': 1
-     }
+     'features':{
+        'entities': {
+            'sentiment': true,
+            'limit': 1
+        }}
     };
 
      let naturalLanguageUnderstanding=getNLUInstance();
@@ -78,7 +81,8 @@ app.get("/url/sentiment", (req,res) => {
     })
     .catch(err => {
         console.log('error:', err);
-         res.send({'error:': err});
+         //res.send({'error:': err});
+         res.send('error:'+ err);
     });
 });
 
@@ -86,10 +90,11 @@ app.get("/text/emotion", (req,res) => {
     //return res.send({"happy":"10","sad":"90"});
     const analyzeParams = {
     'text': text,
-    'entities': {
-        'emotion': true,
-        'limit': 1
-     }
+     'features':{
+        'entities': {
+            'emotion': true,
+            'limit': 1
+        }}
     };
 
      let naturalLanguageUnderstanding=getNLUInstance();
@@ -101,7 +106,8 @@ app.get("/text/emotion", (req,res) => {
     })
     .catch(err => {
         console.log('error:', err);
-         res.send({'error:': err});
+        // res.send({'error:': err});
+        res.send('error:'+ err);
     });
 });
 
@@ -113,10 +119,11 @@ app.get("/text/sentiment", (req,res) => {
     
     const analyzeParams = {
     'text': text,
-    'entities': {
-        'sentiment': true,
-        'limit': 1
-     }
+    'features':{
+        'entities': {
+            'sentiment': true,
+            'limit': 1
+        }}
     };
 
      let naturalLanguageUnderstanding=getNLUInstance();
@@ -128,7 +135,8 @@ app.get("/text/sentiment", (req,res) => {
     })
     .catch(err => {
         console.log('error:', err);
-         res.send({'error:': err});
+         //res.send({'error:': err});
+         res.send('error:'+ err);
     });
 });
 
