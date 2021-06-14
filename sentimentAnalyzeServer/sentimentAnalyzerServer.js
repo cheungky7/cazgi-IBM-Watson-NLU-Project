@@ -88,6 +88,8 @@ app.get("/url/sentiment", (req,res) => {
 
 app.get("/text/emotion", (req,res) => {
     //return res.send({"happy":"10","sad":"90"});
+     let text = req.query.text;
+     
     const analyzeParams = {
     'text': text,
      'features':{
