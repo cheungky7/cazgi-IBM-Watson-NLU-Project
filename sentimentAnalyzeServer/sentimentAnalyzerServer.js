@@ -50,7 +50,7 @@ app.get("/url/emotion", (req,res) => {
     naturalLanguageUnderstanding.analyze(analyzeParams)
     .then(analysisResults => {
         console.log(JSON.stringify(analysisResults, null, 2));
-        res.send(JSON.stringify(analysisResults, null, 2));
+        res.send(JSON.stringify(analysisResults.result.entities[0].emotion, null, 2));
     })
     .catch(err => {
         console.log('error:', err);
@@ -77,7 +77,7 @@ app.get("/url/sentiment", (req,res) => {
     naturalLanguageUnderstanding.analyze(analyzeParams)
     .then(analysisResults => {
         console.log(JSON.stringify(analysisResults, null, 2));
-        res.send(JSON.stringify(analysisResults, null, 2));
+        res.send(JSON.stringify(analysisResults.result.entities[0].sentiment.label, null, 2));
     })
     .catch(err => {
         console.log('error:', err);
@@ -102,7 +102,7 @@ app.get("/text/emotion", (req,res) => {
     naturalLanguageUnderstanding.analyze(analyzeParams)
     .then(analysisResults => {
         console.log(JSON.stringify(analysisResults, null, 2));
-        res.send(JSON.stringify(analysisResults, null, 2));
+        res.send(JSON.stringify(analysisResults.result.entities[0].emotion, null, 2));
     })
     .catch(err => {
         console.log('error:', err);
@@ -131,7 +131,7 @@ app.get("/text/sentiment", (req,res) => {
     naturalLanguageUnderstanding.analyze(analyzeParams)
     .then(analysisResults => {
         console.log(JSON.stringify(analysisResults, null, 2));
-        res.send(JSON.stringify(analysisResults, null, 2));
+        res.send(JSON.stringify(analysisResults.result.entities[0].sentiment.label, null, 2));
     })
     .catch(err => {
         console.log('error:', err);

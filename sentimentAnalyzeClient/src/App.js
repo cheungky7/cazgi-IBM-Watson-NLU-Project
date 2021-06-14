@@ -50,6 +50,7 @@ class App extends React.Component {
 
       this.setState({sentimentOutput:response.data});
       let output = response.data;
+      console.log(output);
       if(response.data === "positive") {
         output = <div style={{color:"green",fontSize:20}}>{response.data}</div>
       } else if (response.data === "negative"){
@@ -73,12 +74,15 @@ class App extends React.Component {
     ret = axios.get(url);
 
     ret.then((response)=>{
+      console.log(response.data);
       this.setState({sentimentOutput:<EmotionTable emotions={response.data}/>});
   });
   }
   
 
   render() {
+
+     console.log(this.state.sentimentOutput);
     return (  
       <div className="App">
       <button className="btn btn-info" onClick={this.renderTextArea}>Text</button>
